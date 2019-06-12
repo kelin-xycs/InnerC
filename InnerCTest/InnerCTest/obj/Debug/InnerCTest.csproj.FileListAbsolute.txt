@@ -1,9 +1,0 @@
-C:\新建文件夹\Projects 5\InnerC\InnerCTest\InnerCTest\bin\Debug\InnerCTest.exe.config
-C:\新建文件夹\Projects 5\InnerC\InnerCTest\InnerCTest\bin\Debug\InnerCTest.exe
-C:\新建文件夹\Projects 5\InnerC\InnerCTest\InnerCTest\bin\Debug\InnerCTest.pdb
-C:\新建文件夹\Projects 5\InnerC\InnerCTest\InnerCTest\obj\Debug\InnerCTest.csprojResolveAssemblyReference.cache
-C:\新建文件夹\Projects 5\InnerC\InnerCTest\InnerCTest\obj\Debug\InnerCTest.Form1.resources
-C:\新建文件夹\Projects 5\InnerC\InnerCTest\InnerCTest\obj\Debug\InnerCTest.Properties.Resources.resources
-C:\新建文件夹\Projects 5\InnerC\InnerCTest\InnerCTest\obj\Debug\InnerCTest.csproj.GenerateResource.Cache
-C:\新建文件夹\Projects 5\InnerC\InnerCTest\InnerCTest\obj\Debug\InnerCTest.exe
-C:\新建文件夹\Projects 5\InnerC\InnerCTest\InnerCTest\obj\Debug\InnerCTest.pdb

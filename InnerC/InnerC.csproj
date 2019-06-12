@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3E02ADFE-D099-4534-B06B-6668F3F61909}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>InnerC</RootNamespace>
+    <AssemblyName>InnerC</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Compiler.cs" />
+    <Compile Include="C_Members\I_C_Member.cs" />
+    <Compile Include="C_Members\块作用域.cs" />
+    <Compile Include="C_Members\作用域.cs" />
+    <Compile Include="C_Members\表达式.cs" />
+    <Compile Include="C_Members\表达式s\Cast.cs" />
+    <Compile Include="C_Members\表达式s\不等于.cs" />
+    <Compile Include="C_Members\表达式s\乘.cs" />
+    <Compile Include="C_Members\表达式s\减.cs" />
+    <Compile Include="C_Members\表达式s\加.cs" />
+    <Compile Include="C_Members\表达式s\变量.cs" />
+    <Compile Include="C_Members\表达式s\变量声明和初始化.cs" />
+    <Compile Include="C_Members\表达式s\常量_变量_字段_指针字段_数组元素_函数调用_函数指针调用_调用链.cs" />
+    <Compile Include="C_Members\表达式s\大于.cs" />
+    <Compile Include="C_Members\表达式s\大于等于.cs" />
+    <Compile Include="C_Members\表达式s\小于.cs" />
+    <Compile Include="C_Members\表达式s\小于等于.cs" />
+    <Compile Include="C_Members\表达式s\常量.cs" />
+    <Compile Include="C_Members\表达式s\指针运算.cs" />
+    <Compile Include="C_Members\表达式s\等于.cs" />
+    <Compile Include="C_Members\表达式s\类型.cs" />
+    <Compile Include="C_Members\表达式s\赋值.cs" />
+    <Compile Include="C_Members\表达式s\除.cs" />
+    <Compile Include="C_Members\表达式s\逻辑与或非.cs" />
+    <Compile Include="C_Members\语句s\continue_语句.cs" />
+    <Compile Include="C_Members\语句s\break_语句.cs" />
+    <Compile Include="C_Members\语句s\for_语句.cs" />
+    <Compile Include="C_Members\语句s\if_语句.cs" />
+    <Compile Include="C_Members\语句s\return_语句.cs" />
+    <Compile Include="C_Members\语句s\while_语句.cs" />
+    <Compile Include="C_Members\结构体.cs" />
+    <Compile Include="C_Members\语句.cs" />
+    <Compile Include="C_Members\语句s\变量声明和初始化语句.cs" />
+    <Compile Include="C_Members\语句s\表达式语句.cs" />
+    <Compile Include="C_Members\运算符.cs" />
+    <Compile Include="while_语句_Parser.cs" />
+    <Compile Include="语句_Parser.cs" />
+    <Compile Include="if_语句_Parser.cs" />
+    <Compile Include="Parser.cs" />
+    <Compile Include="ParseResult.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="InnerCException.cs" />
+    <Compile Include="StrUtil.cs" />
+    <Compile Include="Util.cs" />
+    <Compile Include="C_Members\函数.cs" />
+    <Compile Include="函数_Parser.cs" />
+    <Compile Include="常量_变量_字段_指针字段_数组元素_函数调用_函数指针调用_调用链_Parser.cs" />
+    <Compile Include="第一层_Parser.cs" />
+    <Compile Include="第一层_代码块.cs" />
+    <Compile Include="结构体_Parser.cs" />
+    <Compile Include="表达式_Parser.cs" />
+    <Compile Include="表达式段.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

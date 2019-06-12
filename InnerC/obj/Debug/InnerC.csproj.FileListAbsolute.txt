@@ -1,0 +1,6 @@
+C:\新建文件夹\Projects 5\ILBC\InnerC\bin\Debug\InnerC.dll
+C:\新建文件夹\Projects 5\ILBC\InnerC\bin\Debug\InnerC.pdb
+C:\新建文件夹\Projects 5\ILBC\InnerC\obj\Debug\InnerC.csproj.CoreCompileInputs.cache
+C:\新建文件夹\Projects 5\ILBC\InnerC\obj\Debug\InnerC.dll
+C:\新建文件夹\Projects 5\ILBC\InnerC\obj\Debug\InnerC.pdb
+C:\新建文件夹\Projects 5\ILBC\InnerC\obj\Debug\InnerC.csprojAssemblyReference.cache

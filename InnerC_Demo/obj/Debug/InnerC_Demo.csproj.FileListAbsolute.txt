@@ -1,0 +1,12 @@
+C:\新建文件夹\Projects 5\ILBC\InnerC_Demo\bin\Debug\InnerC_Demo.exe
+C:\新建文件夹\Projects 5\ILBC\InnerC_Demo\bin\Debug\InnerC_Demo.pdb
+C:\新建文件夹\Projects 5\ILBC\InnerC_Demo\bin\Debug\InnerC.dll
+C:\新建文件夹\Projects 5\ILBC\InnerC_Demo\bin\Debug\InnerC.pdb
+C:\新建文件夹\Projects 5\ILBC\InnerC_Demo\obj\Debug\InnerC_Demo.csprojAssemblyReference.cache
+C:\新建文件夹\Projects 5\ILBC\InnerC_Demo\obj\Debug\InnerC_Demo.Form1.resources
+C:\新建文件夹\Projects 5\ILBC\InnerC_Demo\obj\Debug\InnerC_Demo.Properties.Resources.resources
+C:\新建文件夹\Projects 5\ILBC\InnerC_Demo\obj\Debug\InnerC_Demo.csproj.GenerateResource.cache
+C:\新建文件夹\Projects 5\ILBC\InnerC_Demo\obj\Debug\InnerC_Demo.csproj.CoreCompileInputs.cache
+C:\新建文件夹\Projects 5\ILBC\InnerC_Demo\obj\Debug\InnerC_Demo.csproj.CopyComplete
+C:\新建文件夹\Projects 5\ILBC\InnerC_Demo\obj\Debug\InnerC_Demo.exe
+C:\新建文件夹\Projects 5\ILBC\InnerC_Demo\obj\Debug\InnerC_Demo.pdb
