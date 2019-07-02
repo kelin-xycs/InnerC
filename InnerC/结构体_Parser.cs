@@ -34,9 +34,18 @@ namespace InnerC
 
             StrSpan span结构体名 = StrUtil.Trim(chars, struct关键字位置 + 6, 代码块.大括号块.iLeft - 1, Parser._whiteSpaces);
 
-            Dictionary<string, 字段声明> dic字段声明 = Parse_字段声明(chars, 代码块.大括号块);
+            if (span结构体名.isEmpty)
+                throw new 语法错误_Exception("缺少 结构体名 。", chars, struct关键字位置 + 6);
 
             string 结构体名 = new string(chars, span结构体名.iLeft, span结构体名.iRight - span结构体名.iLeft + 1);
+
+            if (!Util.Check_是否_下划线字母数字_且以_下划线字母_开头(结构体名))
+                throw new 语法错误_Exception("无效的 结构体名 \"" + 结构体名 + "\"，结构体名 应由 下划线字母数字 组成且以 下划线或字母 开头 。", chars, span结构体名.iLeft);
+
+            if (Util.Check_是否关键字(结构体名))
+                throw new 语法错误_Exception("无效的 结构体名 \"" + 结构体名 + "\"，结构体名 不能和 关键字 相同 。", chars, span结构体名.iLeft);
+
+            Dictionary<string, 字段声明> dic字段声明 = Parse_字段声明(chars, 代码块.大括号块);
 
             return new 结构体(结构体名, dic字段声明, span结构体名.iLeft);
         }
@@ -63,7 +72,7 @@ namespace InnerC
                 字段声明 字段 = Parse_字段(chars, span字段);
 
                 if (dic字段声明.ContainsKey(字段.name))
-                    throw new InnerCException("字段名 \"" + 字段.name + "\" 重复 。", chars, 字段.变量位置_iLeft);
+                    throw new 语法错误_Exception("字段名 \"" + 字段.name + "\" 重复 。", chars, 字段.变量名位置);
 
                 dic字段声明.Add(字段.name, 字段);
 
@@ -75,7 +84,7 @@ namespace InnerC
         private static 字段声明 Parse_字段(char[] chars, StrSpan span)
         {
             if (span.isEmpty)
-                throw new InnerCException("缺少字段定义 。", chars, span.iLeft);
+                throw new 语法错误_Exception("缺少字段定义 。", chars, span.iLeft);
 
             //span = StrUtil.Trim(chars, span.iLeft, span.iRight, Parser._whiteSpaces);
 
@@ -85,7 +94,7 @@ namespace InnerC
             变量声明和初始化 变量声明 = 语句_Parser.Parse_变量声明(chars, span.iLeft, span.iRight);
 
             if (变量声明 == null)
-                throw new InnerCException("错误的字段定义 。", chars, span.iLeft);
+                throw new 语法错误_Exception("错误的字段定义 。", chars, span.iLeft);
 
             return 变量声明.To_字段声明();
         }

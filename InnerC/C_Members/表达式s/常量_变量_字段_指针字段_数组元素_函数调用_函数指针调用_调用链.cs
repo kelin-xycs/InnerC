@@ -10,7 +10,7 @@ namespace InnerC.C_Members.表达式s
         private 表达式 左边的表达式;
         private string 字段名;
 
-        public 字段(表达式 左边的表达式, string 字段名)
+        public 字段(表达式 左边的表达式, string 字段名, char[] chars, int iLeft) : base(chars, iLeft)
         {
             this.左边的表达式 = 左边的表达式;
             this.字段名 = 字段名;
@@ -40,7 +40,7 @@ namespace InnerC.C_Members.表达式s
         private 表达式 左边的表达式;
         private string 字段名;
 
-        public 指针字段(表达式 左边的表达式, string 字段名)
+        public 指针字段(表达式 左边的表达式, string 字段名, char[] chars, int iLeft) : base(chars, iLeft)
         {
             this.左边的表达式 = 左边的表达式;
             this.字段名 = 字段名;
@@ -70,7 +70,7 @@ namespace InnerC.C_Members.表达式s
         public 表达式 左边的表达式;
         public List<表达式> list下标;
 
-        public 数组元素(表达式 左边的表达式, List<表达式> list下标)
+        public 数组元素(表达式 左边的表达式, List<表达式> list下标, char[] chars, int iLeft) : base(chars, iLeft)
         {
             this.左边的表达式 = 左边的表达式;
             this.list下标 = list下标;
@@ -110,7 +110,7 @@ namespace InnerC.C_Members.表达式s
         private string 函数名;
         private List<表达式> list实参;
 
-        public 函数调用(string 函数名, List<表达式> list实参)
+        public 函数调用(string 函数名, List<表达式> list实参, char[] chars, int iLeft) : base(chars, iLeft)
         {
             this.函数名 = 函数名;
             this.list实参 = list实参;
@@ -165,7 +165,7 @@ namespace InnerC.C_Members.表达式s
         //    this.list实参 = list实参;
         //}
 
-        public 函数指针调用(指针取值 指针取值, List<表达式> list实参)
+        public 函数指针调用(指针取值 指针取值, List<表达式> list实参, char[] chars, int iLeft) : base(chars, iLeft)
         {
             this.指针取值 = 指针取值;
             this.list实参 = list实参;

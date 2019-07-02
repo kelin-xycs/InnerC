@@ -134,7 +134,7 @@ namespace InnerC
                     变量声明和初始化 变量声明 = 变量声明语句.变量声明;
 
                     if (块.dic变量声明.ContainsKey(变量声明.name))
-                        throw new InnerCException("在当前作用域范围内已定义了名为 \"" + 变量声明.name + "\" 的变量 。", chars, 变量声明.变量位置_iLeft);
+                        throw new 语法错误_Exception("在当前作用域范围内已定义了名为 \"" + 变量声明.name + "\" 的变量 。", chars, 变量声明.变量名位置);
 
                     变量声明语句.Set_作用域(块);
 
@@ -285,7 +285,7 @@ namespace InnerC
 
             if (变量 != null)
             {
-                return new 变量声明和初始化(new 类型(new string(chars, p, l), 星号Count, null), 变量.name, null, 变量.参考位置_iLeft);
+                return new 变量声明和初始化(new 类型(new string(chars, p, l), 星号Count, null, chars, p), 变量.name, null, 变量.iLeft, chars, p);
             }
 
             赋值 赋值 = 表达式 as 赋值;
@@ -296,7 +296,7 @@ namespace InnerC
 
                 if (变量 != null)
                 {
-                    return new 变量声明和初始化(new 类型(new string(chars, p, l), 星号Count, null), 变量.name, 赋值.右边的表达式, 变量.参考位置_iLeft);
+                    return new 变量声明和初始化(new 类型(new string(chars, p, l), 星号Count, null, chars, p), 变量.name, 赋值.右边的表达式, 变量.iLeft, chars, p);
                 }
             }
 
@@ -321,7 +321,7 @@ namespace InnerC
                 {
                     //list_数组维度_Length = Get_list_数组维度_Length(数组元素, chars);
 
-                    return new 变量声明和初始化(new 类型(new string(chars, p, l), 星号Count, 数组元素.list下标), 变量.name, null, 变量.参考位置_iLeft);
+                    return new 变量声明和初始化(new 类型(new string(chars, p, l), 星号Count, 数组元素.list下标, chars, p), 变量.name, null, 变量.iLeft, chars, p);
                 }
             }
 
@@ -344,7 +344,7 @@ namespace InnerC
                         //if (常量 == null)
                         //    throw new InnerCException("只能用常量对数组初始化 。", chars, p);
 
-                        return new 变量声明和初始化(new 类型(new string(chars, p, l), 星号Count, 数组元素.list下标), 变量.name, 赋值.右边的表达式, 变量.参考位置_iLeft);
+                        return new 变量声明和初始化(new 类型(new string(chars, p, l), 星号Count, 数组元素.list下标, chars, p), 变量.name, 赋值.右边的表达式, 变量.iLeft, chars, p);
                     }
                 }
             }
@@ -619,7 +619,7 @@ namespace InnerC
             语句结束位置 = Parser.Find_单引号对双引号对以外的内容(chars, beginIndex, endIndex, ';');
 
             if (语句结束位置 == -1)
-                throw new InnerCException("未结束的语句，缺少分号 \";\" 。", chars, span.iRight);
+                throw new 语法错误_Exception("未结束的语句，缺少分号 \";\" 。", chars, span.iRight);
 
             span = StrUtil.Trim(chars, span.iLeft, span.iRight, Parser._whiteSpaces);
 
@@ -646,7 +646,7 @@ namespace InnerC
             int return后的位置 = span.iLeft + 6;
 
             if (return后的位置 > span.iRight)
-                throw new InnerCException("未结束的 return 语句 。", chars, span.iLeft);
+                throw new 语法错误_Exception("未结束的 return 语句 。", chars, span.iLeft);
 
             char c = chars[return后的位置];
 
@@ -656,7 +656,7 @@ namespace InnerC
             语句结束位置 = Parser.Find_单引号对双引号对以外的内容(chars, return后的位置, span.iRight, ';');
 
             if (语句结束位置 == -1)
-                throw new InnerCException("未结束的 return 语句，缺少分号 \";\" 。", chars, span.iLeft);
+                throw new 语法错误_Exception("未结束的 return 语句，缺少分号 \";\" 。", chars, span.iLeft);
 
             StrSpan span返回值 = StrUtil.Trim(chars, return后的位置, 语句结束位置 - 1, Parser._whiteSpaces);
 
@@ -689,7 +689,7 @@ namespace InnerC
             int break后的位置 = span.iLeft + 5;
 
             if (break后的位置 > span.iRight)
-                throw new InnerCException("未结束的 break 语句 。", chars, span.iLeft);
+                throw new 语法错误_Exception("未结束的 break 语句 。", chars, span.iLeft);
 
             char c = chars[break后的位置];
 
@@ -699,12 +699,12 @@ namespace InnerC
             int break后不是空白的位置 = StrUtil.FindForwardUntilNot(chars, break后的位置, span.iRight, Parser._whiteSpaces);
 
             if (break后不是空白的位置 == -1)
-                throw new InnerCException("未结束的 break 语句，缺少分号 \";\" 。", chars, span.iLeft);
+                throw new 语法错误_Exception("未结束的 break 语句，缺少分号 \";\" 。", chars, span.iLeft);
 
             c = chars[break后不是空白的位置];
 
             if (c != ';')
-                throw new InnerCException("无效的 break 语句，无效的字符 \"" + c + "\" 。", chars, break后不是空白的位置);
+                throw new 语法错误_Exception("无效的 break 语句，无效的字符 \"" + c + "\" 。", chars, break后不是空白的位置);
 
             语句结束位置 = break后不是空白的位置;
 
@@ -726,7 +726,7 @@ namespace InnerC
             int break后的位置 = span.iLeft + 5;
 
             if (break后的位置 > span.iRight)
-                throw new InnerCException("未结束的 continue 语句 。", chars, span.iLeft);
+                throw new 语法错误_Exception("未结束的 continue 语句 。", chars, span.iLeft);
 
             char c = chars[break后的位置];
 
@@ -736,12 +736,12 @@ namespace InnerC
             int break后不是空白的位置 = StrUtil.FindForwardUntilNot(chars, break后的位置, span.iRight, Parser._whiteSpaces);
 
             if (break后不是空白的位置 == -1)
-                throw new InnerCException("未结束的 continue 语句，缺少分号 \";\" 。", chars, span.iLeft);
+                throw new 语法错误_Exception("未结束的 continue 语句，缺少分号 \";\" 。", chars, span.iLeft);
 
             c = chars[break后不是空白的位置];
 
             if (c != ';')
-                throw new InnerCException("无效的 continue 语句，无效的字符 \"" + c + "\" 。", chars, break后不是空白的位置);
+                throw new 语法错误_Exception("无效的 continue 语句，无效的字符 \"" + c + "\" 。", chars, break后不是空白的位置);
 
             语句结束位置 = break后不是空白的位置;
 

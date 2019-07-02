@@ -33,10 +33,10 @@ namespace InnerC
             int 右小括号位置 = StrUtil.FindBackwardUntilNot(chars, span.iLeft, 代码块.大括号块.iLeft - 1, Parser._whiteSpaces);
 
             if (右小括号位置 == -1)
-                throw new InnerCException("函数定义错误： 函数头为空 。", chars, 代码块.大括号块.iLeft - 1);
+                throw new 语法错误_Exception("函数定义错误： 函数头为空 。", chars, 代码块.大括号块.iLeft - 1);
 
             if (chars[右小括号位置] != ')')
-                throw new InnerCException("函数定义错误： 函数头 缺少 右小括号 \"(\" 。", chars, 右小括号位置);
+                throw new 语法错误_Exception("函数定义错误： 函数头 缺少 右小括号 \"(\" 。", chars, 右小括号位置);
 
             //int 右小括号位置 = StrUtil.FindBackward(chars, 代码块.iLeft, 代码块.大括号块.iLeft - 1, ')');
 
@@ -49,12 +49,12 @@ namespace InnerC
             int 左小括号位置 = StrUtil.FindBackward(chars, span.iLeft, 右小括号位置 - 1, '(');
 
             if (左小括号位置 == -1)
-                throw new InnerCException("函数定义错误： 函数头 缺少 左小括号 \"(\" 。", chars, span.iLeft);
+                throw new 语法错误_Exception("函数定义错误： 函数头 缺少 左小括号 \"(\" 。", chars, span.iLeft);
 
             int 函数名结束位置 = StrUtil.FindBackwardUntilNot(chars, span.iLeft, 左小括号位置 - 1, Parser._whiteSpaces);
 
             if (!Util.Check_是否_下划线字母数字(chars[函数名结束位置]))
-                throw new InnerCException("函数定义错误： 缺少 函数名 。", chars, 函数名结束位置);
+                throw new 语法错误_Exception("函数定义错误： 缺少 函数名 。", chars, 函数名结束位置);
 
             int 函数名开始位置的前一个位置 = Parser.向左寻找_不是_下划线字母数字_的字符(chars, span.iLeft, 函数名结束位置);
 
@@ -71,8 +71,13 @@ namespace InnerC
 
             char c = chars[函数名开始位置];
 
+            string 函数名 = new string(chars, 函数名开始位置, 函数名结束位置 - 函数名开始位置 + 1);
+
             if (!(c == '_' || StrUtil.IsLetter(c)))
-                throw new InnerCException("函数定义错误： 无效的函数名 。", chars, 函数名开始位置);
+                throw new 语法错误_Exception("无效的 函数名 \"" + 函数名 + "\"，函数名 应由 下划线字母数字 组成且以 下划线或字母 开头 。", chars, 函数名开始位置);
+
+            if (Util.Check_是否关键字(函数名))
+                throw new 语法错误_Exception("无效的 函数名 \"" + 函数名 + "\"，函数名 不能和 关键字 相同 。", chars, 函数名开始位置);
 
             //变量声明 返回类型;
 
@@ -81,7 +86,7 @@ namespace InnerC
             //    return Parse(chars, -1, -1, span.iLeft, 函数名结束位置, 左小括号位置, 右小括号位置, 代码块.大括号块.iLeft, 代码块.大括号块.iRight);
             //}
 
-           
+
             //c = chars[函数名开始位置 - 1];
 
             //if (!StrUtil.IsOneOf(c, Parser._whiteSpaces和星号))
@@ -92,13 +97,13 @@ namespace InnerC
             类型 返回类型 = Parse_返回类型(chars, span.iLeft, 函数名开始位置 - 1, out 报错位置);
 
             if (报错位置 != -1)
-                throw new InnerCException("未结束的语句，可能缺少分号 \";\" 。", chars, 报错位置);
+                throw new 语法错误_Exception("未结束的语句，可能缺少分号 \";\" 。", chars, 报错位置);
 
 
             作用域 形参列表 = Parse_形参列表(chars, 左小括号位置, 右小括号位置);
             块作用域 函数体 = Parse_函数体(chars, 代码块.大括号块);
 
-            string 函数名 = new string(chars, 函数名开始位置, 函数名结束位置 - 函数名开始位置 + 1);
+            
 
             return new 函数(返回类型, 函数名, 形参列表, 函数体, 函数名开始位置);
 
@@ -133,7 +138,7 @@ namespace InnerC
 
             报错位置 = -1;
 
-            类型 返回类型 = new 类型("void", 0, null);
+            类型 返回类型 = new 类型("void", 0, null, chars, endIndex);
 
             //if (beginIndex > endIndex)
             //{
@@ -205,7 +210,7 @@ namespace InnerC
                     星号Count++;
             }
 
-            返回类型 = new 类型(type, 星号Count, null);
+            返回类型 = new 类型(type, 星号Count, null, chars, 类型开始位置);
 
             if (span.iLeft < 类型开始位置)
             {
@@ -235,7 +240,7 @@ namespace InnerC
                 形参 形参 = Parse_形参(chars, span形参);
                 
                 if (形参列表.dic变量声明.ContainsKey(形参.name))
-                    throw new InnerCException("参数名 \"" + 形参.name + "\" 重复 。", chars, 形参.变量位置_iLeft);
+                    throw new 语法错误_Exception("参数名 \"" + 形参.name + "\" 重复 。", chars, 形参.变量名位置);
 
                 形参列表.dic变量声明.Add(形参.name, 形参);
             }
@@ -246,7 +251,7 @@ namespace InnerC
         private static 形参 Parse_形参(char[] chars, StrSpan span)
         {
             if (span.isEmpty)
-                throw new InnerCException("缺少参数定义 。", chars, span.iLeft);
+                throw new 语法错误_Exception("缺少参数定义 。", chars, span.iLeft);
 
             //span = StrUtil.Trim(chars, span.iLeft, span.iRight, Parser._whiteSpaces);
 
@@ -257,7 +262,7 @@ namespace InnerC
             变量声明和初始化 变量声明 = 语句_Parser.Parse_变量声明(chars, span.iLeft, span.iRight);
 
             if (变量声明 == null)
-                throw new InnerCException("错误的参数定义 。", chars, span.iLeft);
+                throw new 语法错误_Exception("错误的参数定义 。", chars, span.iLeft);
 
             return 变量声明.To_形参();
             

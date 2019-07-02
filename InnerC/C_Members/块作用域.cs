@@ -34,13 +34,13 @@ namespace InnerC.C_Members
 
         }
 
-        public override void 类型和语法检查()
+        public override void 类型和语法检查(List<语法错误> list语法错误)
         {
             for(int i=0; i<this.list语句.Count; i++)
             {
                 语句 语句 = this.list语句[i];
 
-                语句.类型和语法检查();
+                语句.类型和语法检查(list语法错误);
             }
         }
     }

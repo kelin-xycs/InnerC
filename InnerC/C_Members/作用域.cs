@@ -79,7 +79,7 @@ namespace InnerC.C_Members
             if (this.父作用域 != null)
                 return this.父作用域.Get_全局成员();
 
-            throw new Exception("找不到全局成员 。");
+            throw new InnerCException("找不到全局成员 。");
         }
 
         public void Set_所在函数(函数 函数)
@@ -102,11 +102,11 @@ namespace InnerC.C_Members
             throw new NotImplementedException();
         }
 
-        public virtual void 类型和语法检查()
+        public virtual void 类型和语法检查(List<语法错误> list语法错误)
         {
             foreach(变量声明和初始化 变量声明 in this.dic变量声明.Values)
             {
-                变量声明.类型和语法检查();
+                变量声明.类型和语法检查(list语法错误);
             }
         }
     }

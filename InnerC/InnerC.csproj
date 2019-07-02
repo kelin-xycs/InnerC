@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Compiler.cs" />
     <Compile Include="C_Members\I_C_Member.cs" />
     <Compile Include="C_Members\块作用域.cs" />
@@ -76,13 +75,14 @@
     <Compile Include="C_Members\语句s\变量声明和初始化语句.cs" />
     <Compile Include="C_Members\语句s\表达式语句.cs" />
     <Compile Include="C_Members\运算符.cs" />
+    <Compile Include="InnerCException.cs" />
     <Compile Include="while_语句_Parser.cs" />
     <Compile Include="语句_Parser.cs" />
     <Compile Include="if_语句_Parser.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="ParseResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="InnerCException.cs" />
+    <Compile Include="语法错误.cs" />
     <Compile Include="StrUtil.cs" />
     <Compile Include="Util.cs" />
     <Compile Include="C_Members\函数.cs" />

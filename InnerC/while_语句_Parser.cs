@@ -25,23 +25,23 @@ namespace InnerC
             int 左小括号位置 = StrUtil.FindForwardUntilNot(chars, span.iLeft + 5, span.iRight, Parser._whiteSpaces);
 
             if (左小括号位置 == -1)
-                throw new InnerCException("未结束的 while 语句 。", chars, span.iLeft + 1);
+                throw new 语法错误_Exception("未结束的 while 语句 。", chars, span.iLeft + 1);
 
             char c = chars[左小括号位置];
 
             if (c != '(')
-                throw new InnerCException("while 语句 缺少条件判断 左小括号 。", chars, 左小括号位置);
+                throw new 语法错误_Exception("while 语句 缺少条件判断 左小括号 。", chars, 左小括号位置);
 
             int 右小括号位置 = Parser.Find_小括号_右(chars, 左小括号位置 + 1, span.iRight);
 
             if (右小括号位置 == -1)
-                throw new InnerCException("while 语句 缺少条件判断 右小括号 。", chars, 左小括号位置 + 1);
+                throw new 语法错误_Exception("while 语句 缺少条件判断 右小括号 。", chars, 左小括号位置 + 1);
 
 
             StrSpan span判断 = StrUtil.Trim(chars, 左小括号位置 + 1, 右小括号位置 - 1, Parser._whiteSpaces);
 
             if (span判断.isEmpty)
-                throw new InnerCException("while 语句 缺少判断表达式 。", chars, 左小括号位置);
+                throw new 语法错误_Exception("while 语句 缺少判断表达式 。", chars, 左小括号位置);
 
             表达式 while_条件 = 表达式_Parser.Parse(chars, 左小括号位置 + 1, 右小括号位置 - 1);
 
@@ -49,7 +49,7 @@ namespace InnerC
             StrSpan span子句 = StrUtil.Trim(chars, 右小括号位置 + 1, span.iRight, Parser._whiteSpaces);
 
             if (span子句.isEmpty)
-                throw new InnerCException("while 语句 缺少子句 。", chars, 右小括号位置 + 1);
+                throw new 语法错误_Exception("while 语句 缺少子句 。", chars, 右小括号位置 + 1);
 
             块作用域 子句 = Parse_子句(chars, span子句.iLeft, span子句.iRight, out 语句结束位置);
 
@@ -64,7 +64,7 @@ namespace InnerC
             StrSpan span = StrUtil.Trim(chars, beginIndex, endIndex, Parser._whiteSpaces);
 
             if (span.isEmpty)
-                throw new InnerCException("缺少子句 。", chars, span.iLeft);
+                throw new 语法错误_Exception("缺少子句 。", chars, span.iLeft);
 
             char c = chars[span.iLeft];
 
@@ -81,7 +81,7 @@ namespace InnerC
             int 右大括号位置 = Parser.Find_大括号_右(chars, 左大括号位置 + 1, endIndex);
 
             if (右大括号位置 == -1)
-                throw new InnerCException("缺少 右大括号 。", chars, 左大括号位置);
+                throw new 语法错误_Exception("缺少 右大括号 。", chars, 左大括号位置);
 
             j = 右大括号位置;
 

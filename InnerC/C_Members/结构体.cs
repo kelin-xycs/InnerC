@@ -57,22 +57,22 @@ namespace InnerC.C_Members
             throw new NotImplementedException();
         }
 
-        public void 类型和语法检查()
+        public void 类型和语法检查(List<语法错误> list语法错误)
         {
             foreach(字段声明 字段声明 in this.dic字段声明.Values)
             {
-                字段声明.类型和语法检查();
+                字段声明.类型和语法检查(list语法错误);
             }
         }
 
-        public void 命名检查()
-        {
-            if (!Util.Check_是否_下划线字母数字_且以_下划线字母_开头(this.name))
-                throw new Exception("无效的 结构体名 \"" + this.name + "\"，结构体名 应由 下划线字母数字 组成且以 下划线或字母 开头 。");
+        //public void 命名检查()
+        //{
+        //    if (!Util.Check_是否_下划线字母数字_且以_下划线字母_开头(this.name))
+        //        throw new Exception("无效的 结构体名 \"" + this.name + "\"，结构体名 应由 下划线字母数字 组成且以 下划线或字母 开头 。");
 
-            if (Util.Check_是否关键字(this.name))
-                throw new Exception("无效的 结构体名 \"" + this.name + "\"，结构体名 不能和 关键字 相同 。");
+        //    if (Util.Check_是否关键字(this.name))
+        //        throw new Exception("无效的 结构体名 \"" + this.name + "\"，结构体名 不能和 关键字 相同 。");
 
-        }
+        //}
     }
 }

@@ -10,11 +10,10 @@ namespace InnerC.C_Members.表达式s
         public 常量_Type type;
         public string value;
 
-        public 常量(常量_Type type, string value, int 参考位置_iLeft)
+        public 常量(常量_Type type, string value, char[] chars, int iLeft) : base(chars, iLeft)
         {
             this.type = type;
             this.value = value;
-            this.参考位置_iLeft = 参考位置_iLeft;
         }
 
         public override void 还原_C_源代码(StringBuilder sb)

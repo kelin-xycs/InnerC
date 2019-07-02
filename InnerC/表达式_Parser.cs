@@ -18,7 +18,7 @@ namespace InnerC
             StrSpan span = StrUtil.Trim(chars, beginIndex, endIndex, Parser._whiteSpaces);
 
             if (span.isEmpty)
-                throw new InnerCException("无效的表达式 。 缺少内容 。", chars, beginIndex);
+                throw new 语法错误_Exception("无效的表达式 。 缺少内容 。", chars, beginIndex);
 
 
             //List<表达式段> list = 按_小括号中括号双引号单引号_分段(chars, span.iLeft, span.iRight);
@@ -38,7 +38,7 @@ namespace InnerC
                 StrSpan 左边的内容 = StrUtil.Trim(chars, span.iLeft, op.iLeft - 1, Parser._whiteSpaces);
 
                 if (!左边的内容.isEmpty)
-                    throw new InnerCException("无效的内容，缺少运算符 。", chars, 左边的内容.iRight);
+                    throw new 语法错误_Exception("无效的内容，缺少运算符 。", chars, 左边的内容.iRight);
 
                 op_右边的表达式 = Parse(chars, op.iRight + 1, endIndex);
             }
@@ -51,75 +51,75 @@ namespace InnerC
 
             if (op.type == 运算符_Type.Cast)
             {
-                return new Cast(op.castType, op_右边的表达式);
+                return new Cast(op.castType, op_右边的表达式, chars, op.iLeft);
             }
             if (op.type == 运算符_Type.指针取值)
             {
-                return new 指针取值(op_右边的表达式);
+                return new 指针取值(op_右边的表达式, chars, op.iLeft);
             }
             if (op.type == 运算符_Type.取地址)
             {
-                return new 取地址(op_右边的表达式);
+                return new 取地址(op_右边的表达式, chars, op.iLeft);
             }
 
             if (op.op == "+")
             {
-                return new 加(op_左边的表达式, op_右边的表达式);
+                return new 加(op_左边的表达式, op_右边的表达式, chars, op.iLeft);
             }
             else if (op.op == "-")
             {
-                return new 减(op_左边的表达式, op_右边的表达式);
+                return new 减(op_左边的表达式, op_右边的表达式, chars, op.iLeft);
             }
             else if (op.op == "*")
             {
-                return new 乘(op_左边的表达式, op_右边的表达式);
+                return new 乘(op_左边的表达式, op_右边的表达式, chars, op.iLeft);
             }
             else if (op.op == "/")
             {
-                return new 除(op_左边的表达式, op_右边的表达式);
+                return new 除(op_左边的表达式, op_右边的表达式, chars, op.iLeft);
             }
             else if (op.op == "==")
             {
-                return new 等于(op_左边的表达式, op_右边的表达式);
+                return new 等于(op_左边的表达式, op_右边的表达式, chars, op.iLeft);
             }
             else if (op.op == ">")
             {
-                return new 大于(op_左边的表达式, op_右边的表达式);
+                return new 大于(op_左边的表达式, op_右边的表达式, chars, op.iLeft);
             }
             else if (op.op == "<")
             {
-                return new 小于(op_左边的表达式, op_右边的表达式);
+                return new 小于(op_左边的表达式, op_右边的表达式, chars, op.iLeft);
             }
             else if (op.op == ">=")
             {
-                return new 大于等于(op_左边的表达式, op_右边的表达式);
+                return new 大于等于(op_左边的表达式, op_右边的表达式, chars, op.iLeft);
             }
             else if (op.op == "<=")
             {
-                return new 小于等于(op_左边的表达式, op_右边的表达式);
+                return new 小于等于(op_左边的表达式, op_右边的表达式, chars, op.iLeft);
             }
             else if (op.op == "!=")
             {
-                return new 不等于(op_左边的表达式, op_右边的表达式);
+                return new 不等于(op_左边的表达式, op_右边的表达式, chars, op.iLeft);
             }
             else if (op.op == "&&")
             {
-                return new 与(op_左边的表达式, op_右边的表达式);
+                return new 与(op_左边的表达式, op_右边的表达式, chars, op.iLeft);
             }
             else if (op.op == "||")
             {
-                return new 或(op_左边的表达式, op_右边的表达式);
+                return new 或(op_左边的表达式, op_右边的表达式, chars, op.iLeft);
             }
             else if (op.op == "!")
             {
-                return new 非(op_右边的表达式);
+                return new 非(op_右边的表达式, chars, op.iLeft);
             }
             else if (op.op == "=")
             {
-                return new 赋值(op_左边的表达式, op_右边的表达式);
+                return new 赋值(op_左边的表达式, op_右边的表达式, chars, op.iLeft);
             }
 
-            throw new InnerCException("无效的运算符 \"" + op.op + "\" 。", chars, op.iLeft);
+            throw new 语法错误_Exception("无效的运算符 \"" + op.op + "\" 。", chars, op.iLeft);
         }
 
         private static 运算符 Get_优先级最小的左右结合运算符和右结合运算符(char[] chars, int beginIndex, int endIndex)
@@ -230,7 +230,7 @@ namespace InnerC
                 return new 运算符(op, 0, 段.iLeft, 段.iRight);
             }
             
-            throw new InnerCException("未知的运算符 ： \"" + new string(chars, 段.iLeft, 段.iRight - 段.iLeft + 1) + "\" 。", chars, 段.iLeft);
+            throw new 语法错误_Exception("未知的运算符 ： \"" + new string(chars, 段.iLeft, 段.iRight - 段.iLeft + 1) + "\" 。", chars, 段.iLeft);
         }
 
         

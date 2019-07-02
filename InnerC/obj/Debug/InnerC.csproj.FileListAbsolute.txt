@@ -4,3 +4,9 @@ C:\新建文件夹\Projects 5\ILBC\InnerC\obj\Debug\InnerC.csproj.CoreCompileInp
 C:\新建文件夹\Projects 5\ILBC\InnerC\obj\Debug\InnerC.dll
 C:\新建文件夹\Projects 5\ILBC\InnerC\obj\Debug\InnerC.pdb
 C:\新建文件夹\Projects 5\ILBC\InnerC\obj\Debug\InnerC.csprojAssemblyReference.cache
+C:\新建文件夹\Projects 5\InnerC\InnerC\bin\Debug\InnerC.dll
+C:\新建文件夹\Projects 5\InnerC\InnerC\bin\Debug\InnerC.pdb
+C:\新建文件夹\Projects 5\InnerC\InnerC\obj\Debug\InnerC.csprojAssemblyReference.cache
+C:\新建文件夹\Projects 5\InnerC\InnerC\obj\Debug\InnerC.csproj.CoreCompileInputs.cache
+C:\新建文件夹\Projects 5\InnerC\InnerC\obj\Debug\InnerC.dll
+C:\新建文件夹\Projects 5\InnerC\InnerC\obj\Debug\InnerC.pdb

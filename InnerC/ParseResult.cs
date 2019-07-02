@@ -19,34 +19,34 @@ namespace InnerC
 
         public Dictionary<string, 函数> dic函数 = new Dictionary<string, 函数>();
 
-        public void 命名检查()
-        {
-            foreach(结构体 结构体 in this.dic结构体.Values)
-            {
-                结构体.命名检查();
-            }
+        //public void 命名检查()
+        //{
+        //    foreach(结构体 结构体 in this.dic结构体.Values)
+        //    {
+        //        结构体.命名检查();
+        //    }
 
-            foreach(函数 函数 in this.dic函数.Values)
-            {
-                函数.命名检查();
-            }
-        }
+        //    foreach(函数 函数 in this.dic函数.Values)
+        //    {
+        //        函数.命名检查();
+        //    }
+        //}
 
-        public void 类型和语法检查()
+        public void 类型和语法检查(List<语法错误> list语法错误)
         {
             foreach (全局变量 全局变量 in this.dic全局变量.Values)
             {
-                全局变量.类型和语法检查(); ;
+                全局变量.类型和语法检查(list语法错误); ;
             }
 
             foreach (结构体 结构体 in this.dic结构体.Values)
             {
-                结构体.类型和语法检查();
+                结构体.类型和语法检查(list语法错误);
             }
 
             foreach (函数 函数 in this.dic函数.Values)
             {
-                函数.类型和语法检查();
+                函数.类型和语法检查(list语法错误);
             }
         }
 

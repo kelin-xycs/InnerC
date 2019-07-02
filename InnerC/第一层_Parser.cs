@@ -75,7 +75,7 @@ namespace InnerC
             if (结构体 != null)
             {
                 if (r.dic结构体.ContainsKey(结构体.name))
-                    throw new InnerCException("结构体名 \"" + 结构体.name + "\" 重复 。", chars, 结构体.结构体名_iLeft);
+                    throw new 语法错误_Exception("结构体名 \"" + 结构体.name + "\" 重复 。", chars, 结构体.结构体名_iLeft);
 
                 结构体.Set_全局成员(r);
 
@@ -88,7 +88,7 @@ namespace InnerC
             函数 函数 = 函数_Parser.Parse(chars, 代码块);
 
             if (r.dic函数.ContainsKey(函数.name))
-                throw new InnerCException("函数名 \"" + 函数.name + "\" 重复 。", chars, 函数.函数名_iLeft);
+                throw new 语法错误_Exception("函数名 \"" + 函数.name + "\" 重复 。", chars, 函数.函数名_iLeft);
 
             函数.Set_全局成员(r);
 
@@ -161,7 +161,7 @@ namespace InnerC
                 int j = Parser.Find_大括号_右(chars, i + 1, endIndex);
 
                 if (j == -1)
-                    throw new InnerCException("未找到与左大括号成对的右大括号 。", chars, i);
+                    throw new 语法错误_Exception("未找到与左大括号成对的右大括号 。", chars, i);
 
                 list.Add(new StrSpan(i, j));
 
@@ -192,16 +192,16 @@ namespace InnerC
                     continue;
 
                 if (i == list.Count - 1)
-                    throw new InnerCException("未结束的语句，缺少分号 \";\" 。", chars, span.iRight);
+                    throw new 语法错误_Exception("未结束的语句，缺少分号 \";\" 。", chars, span.iRight);
 
 
                 变量声明和初始化 变量声明 = 语句_Parser.Parse_变量声明(chars, span.iLeft, span.iRight);
 
                 if (变量声明 == null)
-                    throw new InnerCException("无效的表达式 。", chars, span.iLeft);
+                    throw new 语法错误_Exception("无效的表达式 。", chars, span.iLeft);
             
                 if (r.dic全局变量.ContainsKey(变量声明.name))
-                    throw new InnerCException("已定义了名为 \"" + 变量声明.name + "\" 的 全局变量 。", chars, 变量声明.变量位置_iLeft);
+                    throw new 语法错误_Exception("已定义了名为 \"" + 变量声明.name + "\" 的 全局变量 。", chars, 变量声明.变量名位置);
 
                 r.dic全局变量.Add(变量声明.name, 变量声明.To_全局变量());
                 

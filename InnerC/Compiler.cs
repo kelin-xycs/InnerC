@@ -5,9 +5,6 @@ using System.Text;
 
 using System.IO;
 
-using InnerC.C_Members;
-using InnerC.C_Members.表达式s;
-
 namespace InnerC
 {
     public class Compiler
@@ -33,26 +30,23 @@ namespace InnerC
 
             char[] chars = Encoding.UTF8.GetChars(bytes);
 
-            
-            
+
+
 
             ParseResult r = new ParseResult();
 
-            //Parse_全局变量(r, list全局变量块);
-
-            //SortedDictionary<string, 结构体> dic结构体 = Parse_结构体(list结构体块);
-
-            ////SortedDictionary<string, 函数签名> dic函数签名 = Parse_函数签名(list函数块);
-
-            //SortedDictionary<string, 函数> dic函数 = Parse_函数(list函数块);
 
             第一层_Parser.Parse(r, chars);
 
 
-            r.命名检查();
+            List<语法错误> list语法错误 = new List<语法错误>();
 
+            
             //  因为还没有全部完成，所以先注释掉，不然会报错 。
-            //r.类型和语法检查();
+
+
+            //  r.类型和语法检查(list语法错误);
+
 
             /* **  类型和语法检查” 包含了以下内容 ： 
 
@@ -90,13 +84,12 @@ namespace InnerC
 
 
 
-            //r.生成目标代码();
+            //  r.生成目标代码();
 
 
             r.还原_C_源代码(file + ".reverse.c");
 
         }
 
-        
     }
 }

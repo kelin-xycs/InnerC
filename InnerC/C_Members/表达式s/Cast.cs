@@ -10,7 +10,7 @@ namespace InnerC.C_Members.表达式s
         private string castType;
         private 表达式 右边的表达式;
 
-        public Cast(string castType, 表达式 右边的表达式)
+        public Cast(string castType, 表达式 右边的表达式, char[] chars, int iLeft) : base(chars, iLeft)
         {
             this.castType = castType;
             this.右边的表达式 = 右边的表达式;

@@ -14,7 +14,7 @@ namespace InnerC.C_Members.表达式s
         //private bool isArray;
         public List<表达式> list_数组维度_Length;
 
-        public 类型(string type, int ptrLevel, List<表达式> list_数组维度_Length)
+        public 类型(string type, int ptrLevel, List<表达式> list_数组维度_Length, char[] chars, int iLeft) : base(chars, iLeft)
         {
             this.type = type;
 
@@ -65,7 +65,7 @@ namespace InnerC.C_Members.表达式s
             }
         }
 
-        public override void 类型和语法检查()
+        public override void 类型和语法检查(List<语法错误> list语法错误)
         {
 
             if (Util.Check_是否关键字(this.type))
@@ -76,7 +76,8 @@ namespace InnerC.C_Members.表达式s
             if (r.dic结构体.ContainsKey(this.type))
                 return;
 
-            throw new Exception("无效的类型 \"" + this.type + "\"，既不是 基础类型，又不是 结构体 。");
+            list语法错误.Add(new 语法错误("无效的类型 \"" + this.type + "\"，既不是 基础类型，又不是 结构体 。", this.chars, this.iLeft));
+            //throw new Exception("无效的类型 \"" + this.type + "\"，既不是 基础类型，又不是 结构体 。");
 
         }
     }

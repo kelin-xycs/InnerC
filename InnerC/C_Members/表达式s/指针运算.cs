@@ -9,7 +9,7 @@ namespace InnerC.C_Members.表达式s
     {
         表达式 指针表达式;
 
-        public 指针取值(表达式 指针表达式)
+        public 指针取值(表达式 指针表达式, char[] chars, int iLeft) : base(chars, iLeft)
         {
             this.指针表达式 = 指针表达式;
         }
@@ -37,7 +37,7 @@ namespace InnerC.C_Members.表达式s
     {
         表达式 变量;
 
-        public 取地址(表达式 变量)
+        public 取地址(表达式 变量, char[] chars, int iLeft) : base(chars, iLeft)
         {
             this.变量 = 变量;
         }

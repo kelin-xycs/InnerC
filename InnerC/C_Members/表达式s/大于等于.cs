@@ -10,7 +10,7 @@ namespace InnerC.C_Members.表达式s
         private 表达式 左边的表达式;
         private 表达式 右边的表达式;
 
-        public 大于等于(表达式 左边的表达式, 表达式 右边的表达式)
+        public 大于等于(表达式 左边的表达式, 表达式 右边的表达式, char[] chars, int iLeft) : base(chars, iLeft)
         {
             this.左边的表达式 = 左边的表达式;
             this.右边的表达式 = 右边的表达式;

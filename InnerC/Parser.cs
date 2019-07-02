@@ -395,7 +395,7 @@ namespace InnerC
                     j = Parser.Find_小括号_右(chars, i + 1, endIndex);
 
                     if (j == -1)
-                        throw new InnerCException("未结束的小括号，缺少右小括号 。", chars, i);
+                        throw new 语法错误_Exception("未结束的小括号，缺少右小括号 。", chars, i);
 
                     list.Add(new 表达式段(i, j, 表达式段_Type.小括号段));
 
@@ -409,7 +409,7 @@ namespace InnerC
                     j = Parser.Find_中括号_右(chars, i + 1, endIndex);
 
                     if (j == -1)
-                        throw new InnerCException("未结束的中括号，缺少右中括号 。", chars, i);
+                        throw new 语法错误_Exception("未结束的中括号，缺少右中括号 。", chars, i);
 
                     list.Add(new 表达式段(i, j, 表达式段_Type.中括号段));
 
@@ -423,7 +423,7 @@ namespace InnerC
                     j = Parser.Find_单引号_右(chars, i + 1, endIndex);
 
                     if (j == -1)
-                        throw new InnerCException("未结束的单括号，缺少右单引号 。", chars, i);
+                        throw new 语法错误_Exception("未结束的单括号，缺少右单引号 。", chars, i);
 
                     list.Add(new 表达式段(i, j, 表达式段_Type.单引号段));
 
@@ -437,7 +437,7 @@ namespace InnerC
                     j = Parser.Find_双引号_右(chars, i + 1, endIndex);
 
                     if (j == -1)
-                        throw new InnerCException("未结束的单括号，缺少右双引号 。", chars, i);
+                        throw new 语法错误_Exception("未结束的单括号，缺少右双引号 。", chars, i);
 
                     list.Add(new 表达式段(i, j, 表达式段_Type.双引号段));
 
