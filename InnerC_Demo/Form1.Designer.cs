@@ -42,7 +42,7 @@
             this.txtSrcFile.Name = "txtSrcFile";
             this.txtSrcFile.Size = new System.Drawing.Size(607, 21);
             this.txtSrcFile.TabIndex = 0;
-            this.txtSrcFile.Text = "Test.c";
+            this.txtSrcFile.Text = "..\\..\\Test.c";
             // 
             // btnTest
             // 

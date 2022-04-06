@@ -18,7 +18,7 @@ namespace InnerC.C_Members
 
         private 函数 所在函数;
 
-        private 语句 所在的_while_for_语句;
+        //private 语句 所在的_while_for_语句;
 
 
         public 变量声明和初始化 Get_变量声明_查找_当前作用域_上级作用域_全局变量(string name)
@@ -46,20 +46,20 @@ namespace InnerC.C_Members
             return null;
         }
 
-        public 变量声明和初始化 Get_变量声明_查找_上级作用域(string name)
-        {
-            if (this.父作用域 == null)
-                return null;
+        //public 变量声明和初始化 Get_变量声明_查找_上级作用域(string name)
+        //{
+        //    if (this.父作用域 == null)
+        //        return null;
 
-            变量声明和初始化 变量声明;
+        //    变量声明和初始化 变量声明;
 
-            if (this.父作用域.dic变量声明.TryGetValue(name, out 变量声明))
-            {
-                return 变量声明;
-            }
+        //    if (this.父作用域.dic变量声明.TryGetValue(name, out 变量声明))
+        //    {
+        //        return 变量声明;
+        //    }
 
-            return Get_变量声明_查找_上级作用域(name);
-        }
+        //    return Get_变量声明_查找_上级作用域(name);
+        //}
 
         public void Set_父作用域(作用域 父作用域)
         {
@@ -87,10 +87,10 @@ namespace InnerC.C_Members
             this.所在函数 = 函数;
         }
 
-        public void Set_所在的_while_for_语句(语句 语句)
-        {
-            this.所在的_while_for_语句 = 语句;
-        }
+        //public void Set_所在的_while_for_语句(语句 语句)
+        //{
+        //    this.所在的_while_for_语句 = 语句;
+        //}
 
         public virtual void 还原_C_源代码(StringBuilder sb)
         {

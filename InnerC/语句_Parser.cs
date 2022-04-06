@@ -104,6 +104,17 @@ namespace InnerC
                     continue;
                 }
 
+                for_语句 for_语句 = for_语句_Parser.Parse(chars, span.iLeft, span.iRight, out j);
+
+                if (for_语句 != null)
+                {
+                    for_语句.Set_作用域(块);
+
+                    块.list语句.Add(for_语句);
+
+                    continue;
+                }
+
                 break_语句 break_语句 = Parse_break_语句(chars, span.iLeft, span.iRight, out j);
 
                 if (break_语句 != null)

@@ -75,6 +75,7 @@
     <Compile Include="C_Members\语句s\变量声明和初始化语句.cs" />
     <Compile Include="C_Members\语句s\表达式语句.cs" />
     <Compile Include="C_Members\运算符.cs" />
+    <Compile Include="for_语句_Parser.cs" />
     <Compile Include="InnerCException.cs" />
     <Compile Include="while_语句_Parser.cs" />
     <Compile Include="语句_Parser.cs" />

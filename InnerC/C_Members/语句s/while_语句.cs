@@ -34,11 +34,13 @@ namespace InnerC.C_Members.语句s
         {
             base.Set_作用域(作用域);
 
+            作用域 while_作用域 = new 作用域();
+
             this.while_条件.Set_作用域(作用域);
 
             this.子句.Set_父作用域(作用域);
 
-            作用域.Set_所在的_while_for_语句(this);
+            //作用域.Set_所在的_while_for_语句(this);
         }
     }
 }
