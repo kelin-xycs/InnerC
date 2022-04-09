@@ -49,6 +49,7 @@ namespace InnerC
 
                 foreach(语法错误 error in list语法错误)
                 {
+                    sb.Append("\r\n");
                     sb.Append(error.ToString());
                 }
 

@@ -114,7 +114,6 @@ int iAr[3][4];
 float f = 1.0;
 int i = (iAr[1][2] * (10 / (5 * (f * (2 / (1 / (3 / 4)))))));
 Person persons[10];
-(persons[0].sing = ( & persons));
 ( * persons[0].sing)(person[0]);
 ( * GetPersons()[2].smile)(person, i);
 Person * person;
