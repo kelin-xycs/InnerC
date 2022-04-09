@@ -10,22 +10,36 @@ namespace InnerC.C_Members
     class 结构体 : I_C_Member
     {
         public string name;
-        private Dictionary<string, 字段声明> dic字段声明;
+        //private Dictionary<string, 字段声明> dic字段声明;
         public int 结构体名_iLeft;
+
+        private 作用域 字段声明;
 
         private ParseResult r;
 
-        public 结构体(string name, Dictionary<string, 字段声明> dic字段声明, int 结构体名_iLeft)
+        //public 结构体(string name, Dictionary<string, 字段声明> dic字段声明, int 结构体名_iLeft)
+        //{
+        //    this.name = name;
+        //    this.dic字段声明 = dic字段声明;
+        //    this.结构体名_iLeft = 结构体名_iLeft;
+        //}
+
+        public 结构体(string name, 作用域 字段声明, int 结构体名_iLeft)
         {
             this.name = name;
-            this.dic字段声明 = dic字段声明;
+            this.字段声明 = 字段声明;
             this.结构体名_iLeft = 结构体名_iLeft;
         }
 
-        public void Set_全局成员(ParseResult r)
+        public void Set_作用域(作用域 全局变量)
         {
-            this.r = r;
+            this.字段声明.Set_作用域(全局变量);
         }
+
+        //public void Set_全局成员(ParseResult r)
+        //{
+        //    this.r = r;
+        //}
 
         public void 还原_C_源代码(StringBuilder sb)
         {
@@ -36,14 +50,14 @@ namespace InnerC.C_Members
 
             sb.Append("{\r\n");
 
-            foreach (变量声明和初始化 字段 in this.dic字段声明.Values)
+            foreach (变量声明和初始化 字段 in this.字段声明.dic变量声明.Values)
             {
                 字段.还原_C_源代码(sb);
 
                 sb.Append(",\r\n");
             }
 
-            if (this.dic字段声明.Values.Count > 0)
+            if (this.字段声明.dic变量声明.Values.Count > 0)
             {
                 sb.Remove(sb.Length - 3, 3);
             }
@@ -59,7 +73,8 @@ namespace InnerC.C_Members
 
         public void 类型和语法检查(List<语法错误> list语法错误)
         {
-            foreach(字段声明 字段声明 in this.dic字段声明.Values)
+            foreach (变量声明和初始化 字段声明 in this.字段声明.dic变量声明.Values)
+            //foreach(字段声明 字段声明 in this.字段声明.dic变量声明.Values)
             {
                 字段声明.类型和语法检查(list语法错误);
             }

@@ -33,6 +33,11 @@ namespace InnerC.C_Members.表达式s
             sb.Append(this.字段名);
 
         }
+
+        public override void 类型和语法检查(List<语法错误> list语法错误)
+        {
+            this.左边的表达式.类型和语法检查(list语法错误);
+        }
     }
 
     class 指针字段 : 表达式
@@ -63,6 +68,11 @@ namespace InnerC.C_Members.表达式s
             sb.Append(this.字段名);
 
         }
+
+        public override void 类型和语法检查(List<语法错误> list语法错误)
+        {
+            this.左边的表达式.类型和语法检查(list语法错误);
+        }
     }
 
     class 数组元素 : 表达式
@@ -81,6 +91,11 @@ namespace InnerC.C_Members.表达式s
             base.Set_作用域(作用域);
 
             this.左边的表达式.Set_作用域(作用域);
+
+            foreach (表达式 下标 in this.list下标)
+            {
+                下标.Set_作用域(作用域);
+            }
         }
 
         public override void 还原_C_源代码(StringBuilder sb)
@@ -102,6 +117,16 @@ namespace InnerC.C_Members.表达式s
                 sb.Append("]");
             }
 
+        }
+
+        public override void 类型和语法检查(List<语法错误> list语法错误)
+        {
+            this.左边的表达式.类型和语法检查(list语法错误);
+
+            foreach (表达式 下标 in this.list下标)
+            {
+                下标.类型和语法检查(list语法错误);
+            }
         }
     }
 
@@ -152,6 +177,14 @@ namespace InnerC.C_Members.表达式s
 
             sb.Append(")");
         }
+
+        public override void 类型和语法检查(List<语法错误> list语法错误)
+        {
+            foreach (表达式 实参 in this.list实参)
+            {
+                实参.类型和语法检查(list语法错误);
+            }
+        }
     }
 
     class 函数指针调用 : 表达式
@@ -174,6 +207,8 @@ namespace InnerC.C_Members.表达式s
         public override void Set_作用域(作用域 作用域)
         {
             base.Set_作用域(作用域);
+
+            this.指针取值.Set_作用域(作用域);
 
             表达式 实参;
 
@@ -206,6 +241,16 @@ namespace InnerC.C_Members.表达式s
                 sb.Remove(sb.Length - 2, 2);
 
             sb.Append(")");
+        }
+
+        public override void 类型和语法检查(List<语法错误> list语法错误)
+        {
+            this.指针取值.类型和语法检查(list语法错误);
+
+            foreach(表达式 实参 in this.list实参)
+            {
+                实参.类型和语法检查(list语法错误);
+            }
         }
     }
 }

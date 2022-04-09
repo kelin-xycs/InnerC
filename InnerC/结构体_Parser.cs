@@ -45,21 +45,27 @@ namespace InnerC
             if (Util.Check_是否关键字(结构体名))
                 throw new 语法错误_Exception("无效的 结构体名 \"" + 结构体名 + "\"，结构体名 不能和 关键字 相同 。", chars, span结构体名.iLeft);
 
-            Dictionary<string, 字段声明> dic字段声明 = Parse_字段声明(chars, 代码块.大括号块);
+            //Dictionary<string, 字段声明> dic字段声明 = Parse_字段声明(chars, 代码块.大括号块);
+            作用域 字段声明 = Parse_字段声明(chars, 代码块.大括号块);
 
-            return new 结构体(结构体名, dic字段声明, span结构体名.iLeft);
+            return new 结构体(结构体名, 字段声明, span结构体名.iLeft);
+            //return new 结构体(结构体名, dic字段声明, span结构体名.iLeft);
         }
 
-        private static Dictionary<string, 字段声明> Parse_字段声明(char[] chars, StrSpan 大括号块)
+        //private static Dictionary<string, 字段声明> Parse_字段声明(char[] chars, StrSpan 大括号块)
+        private static 作用域 Parse_字段声明(char[] chars, StrSpan 大括号块)
         {
 
-            Dictionary<string, 字段声明> dic字段声明 = new Dictionary<string, 字段声明>();
-            
+            //Dictionary<string, 字段声明> dic字段声明 = new Dictionary<string, 字段声明>();
+            作用域 字段声明 = new 作用域();
 
             StrSpan span = StrUtil.Trim(chars, 大括号块.iLeft + 1, 大括号块.iRight - 1, Parser._whiteSpaces);
 
+            //if (span.isEmpty)
+            //    return dic字段声明;
+
             if (span.isEmpty)
-                return dic字段声明;
+                return 字段声明;
 
             List<StrSpan> list = Parser.在_单引号双引号_以外_Split(chars, span.iLeft, span.iRight, ',');
 
@@ -71,14 +77,17 @@ namespace InnerC
 
                 字段声明 字段 = Parse_字段(chars, span字段);
 
-                if (dic字段声明.ContainsKey(字段.name))
+                //if (dic字段声明.ContainsKey(字段.name))
+                if (字段声明.dic变量声明.ContainsKey(字段.name))
                     throw new 语法错误_Exception("字段名 \"" + 字段.name + "\" 重复 。", chars, 字段.变量名位置);
 
-                dic字段声明.Add(字段.name, 字段);
+                //dic字段声明.Add(字段.name, 字段);
+                字段声明.dic变量声明.Add(字段.name, 字段);
 
             }
 
-            return dic字段声明;
+            return 字段声明;
+            //return dic字段声明;
         }
 
         private static 字段声明 Parse_字段(char[] chars, StrSpan span)

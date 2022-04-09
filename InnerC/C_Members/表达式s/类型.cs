@@ -31,6 +31,16 @@ namespace InnerC.C_Members.表达式s
             //}
         }
 
+        public override void Set_作用域(作用域 作用域)
+        {
+            base.Set_作用域(作用域);
+
+            //foreach(表达式 维度_Length in this.list_数组维度_Length)
+            //{
+            //    维度_Length.Set_作用域(作用域);
+            //}
+        }
+
         public override void 还原_C_源代码(StringBuilder sb)
         {
             sb.Append(this.type);

@@ -32,7 +32,7 @@ namespace InnerC.C_Members.语句s
 
             if (this.最后结尾的_else_分句 != null)
             {
-                this.最后结尾的_else_分句.Set_父作用域(作用域);
+                this.最后结尾的_else_分句.Set_作用域(作用域);
             }
         }
 
@@ -64,6 +64,16 @@ namespace InnerC.C_Members.语句s
             
         }
 
+        public override void 类型和语法检查(List<语法错误> list语法错误)
+        {
+            foreach(if_分句 分句 in this.if_分句_和_else_if_分句_List)
+            {
+                分句.类型和语法检查(list语法错误);
+            }
+
+            if (this.最后结尾的_else_分句 != null)
+                this.最后结尾的_else_分句.类型和语法检查(list语法错误);
+        }
     }
 
     class if_分句 : 语句
@@ -83,7 +93,7 @@ namespace InnerC.C_Members.语句s
 
             this.if_判断.Set_作用域(作用域);
 
-            this.子句.Set_父作用域(作用域);
+            this.子句.Set_作用域(作用域);
         }
 
         public override void 还原_C_源代码(StringBuilder sb)
@@ -99,6 +109,13 @@ namespace InnerC.C_Members.语句s
             this.子句.还原_C_源代码(sb);
 
             sb.Append("}\r\n");
+        }
+
+        public override void 类型和语法检查(List<语法错误> list语法错误)
+        {
+            this.if_判断.类型和语法检查(list语法错误);
+
+            this.子句.类型和语法检查(list语法错误);
         }
     }
 }

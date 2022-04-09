@@ -38,9 +38,15 @@ namespace InnerC.C_Members.语句s
 
             this.while_条件.Set_作用域(作用域);
 
-            this.子句.Set_父作用域(作用域);
+            this.子句.Set_作用域(作用域);
 
             //作用域.Set_所在的_while_for_语句(this);
+        }
+
+        public override void 类型和语法检查(List<语法错误> list语法错误)
+        {
+            this.while_条件.类型和语法检查(list语法错误);
+            this.子句.类型和语法检查(list语法错误);
         }
     }
 }

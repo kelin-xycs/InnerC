@@ -16,5 +16,10 @@ namespace InnerC.C_Members.语句s
         {
             sb.Append("break;\r\n");
         }
+
+        public override void 类型和语法检查(List<语法错误> list语法错误)
+        {
+            //throw new NotImplementedException();
+        }
     }
 }

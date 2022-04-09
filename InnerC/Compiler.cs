@@ -41,7 +41,20 @@ namespace InnerC
 
             List<语法错误> list语法错误 = new List<语法错误>();
 
-            
+            r.类型和语法检查(list语法错误);
+
+            if (list语法错误.Count > 0)
+            {
+                StringBuilder sb = new StringBuilder("\r\n");
+
+                foreach(语法错误 error in list语法错误)
+                {
+                    sb.Append(error.ToString());
+                }
+
+                throw new Exception(sb.ToString());
+            }
+
             //  因为还没有全部完成，所以先注释掉，不然会报错 。
 
 

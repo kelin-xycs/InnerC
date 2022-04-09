@@ -20,6 +20,11 @@ namespace InnerC.C_Members.表达式s
         {
             sb.Append(this.value);
         }
+
+        public override void 类型和语法检查(List<语法错误> list语法错误)
+        {
+            //throw new NotImplementedException();
+        }
     }
 
     enum 常量_Type

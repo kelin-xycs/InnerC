@@ -137,6 +137,16 @@ namespace InnerC
                     continue;
                 }
 
+                continue_语句 continue_语句 = Parse_continue_语句(chars, span.iLeft, span.iRight, out j);
+
+                if (continue_语句 != null)
+                {
+                    continue_语句.Set_作用域(块);
+
+                    块.list语句.Add(continue_语句);
+
+                    continue;
+                }
 
                 变量声明和初始化语句 变量声明语句 = Parse_变量声明和初始化_语句(chars, span.iLeft, span.iRight, out j);
 
@@ -144,14 +154,18 @@ namespace InnerC
                 {
                     变量声明和初始化 变量声明 = 变量声明语句.变量声明;
 
-                    if (块.dic变量声明.ContainsKey(变量声明.name))
-                        throw new 语法错误_Exception("在当前作用域范围内已定义了名为 \"" + 变量声明.name + "\" 的变量 。", chars, 变量声明.变量名位置);
+                    块.Add_变量定义(变量声明, chars);
+                    //if (块.dic变量声明.ContainsKey(变量声明.name))
+                    //    throw new 语法错误_Exception("在当前作用域范围内已定义了名为 \"" + 变量声明.name + "\" 的变量 。", chars, 变量声明.变量名位置);
 
-                    变量声明语句.Set_作用域(块);
+                    //变量声明语句.Set_作用域(块);
 
-                    块.dic变量声明.Add(变量声明.name, 变量声明);
+                    //块.dic变量声明.Add(变量声明.name, 变量声明);
 
-                    块.list语句.Add(变量声明语句);
+                    // 变量声明和初始化 已经添加到作用域（块），所以这里不用把 变量声明语句 添加到 块，
+                    // 甚至，都不需要 变量声明语句 这个对象，也不需要 变量声明和初始化语句 这个类
+                    // 但为了 还原_C_源代码()，还是要把 变量声明语句 添加到 块
+                    块.list语句.Add(变量声明语句);  
 
                     continue;
                 }
@@ -303,11 +317,11 @@ namespace InnerC
 
             if (赋值 != null)
             {
-                变量 = 赋值.左边的表达式 as 变量;
+                变量 = 赋值.左表达式 as 变量;
 
                 if (变量 != null)
                 {
-                    return new 变量声明和初始化(new 类型(new string(chars, p, l), 星号Count, null, chars, p), 变量.name, 赋值.右边的表达式, 变量.iLeft, chars, p);
+                    return new 变量声明和初始化(new 类型(new string(chars, p, l), 星号Count, null, chars, p), 变量.name, 赋值.右表达式, 变量.iLeft, chars, p);
                 }
             }
 
@@ -340,7 +354,7 @@ namespace InnerC
 
             if (赋值 != null)
             {
-                数组元素 = 赋值.左边的表达式 as 数组元素;
+                数组元素 = 赋值.左表达式 as 数组元素;
 
                 if (数组元素 != null)
                 {
@@ -355,7 +369,7 @@ namespace InnerC
                         //if (常量 == null)
                         //    throw new InnerCException("只能用常量对数组初始化 。", chars, p);
 
-                        return new 变量声明和初始化(new 类型(new string(chars, p, l), 星号Count, 数组元素.list下标, chars, p), 变量.name, 赋值.右边的表达式, 变量.iLeft, chars, p);
+                        return new 变量声明和初始化(new 类型(new string(chars, p, l), 星号Count, 数组元素.list下标, chars, p), 变量.name, 赋值.右表达式, 变量.iLeft, chars, p);
                     }
                 }
             }
@@ -734,27 +748,27 @@ namespace InnerC
             if (!Parser.开头一段_Equals(chars, span.iLeft, span.iRight, "continue"))
                 return null;
 
-            int break后的位置 = span.iLeft + 5;
+            int continue后的位置 = span.iLeft + 8;
 
-            if (break后的位置 > span.iRight)
+            if (continue后的位置 > span.iRight)
                 throw new 语法错误_Exception("未结束的 continue 语句 。", chars, span.iLeft);
 
-            char c = chars[break后的位置];
+            char c = chars[continue后的位置];
 
             if (c == '_' || StrUtil.IsLetter(c) || StrUtil.IsNumber(c))
                 return null;
 
-            int break后不是空白的位置 = StrUtil.FindForwardUntilNot(chars, break后的位置, span.iRight, Parser._whiteSpaces);
+            int continue后不是空白的位置 = StrUtil.FindForwardUntilNot(chars, continue后的位置, span.iRight, Parser._whiteSpaces);
 
-            if (break后不是空白的位置 == -1)
+            if (continue后不是空白的位置 == -1)
                 throw new 语法错误_Exception("未结束的 continue 语句，缺少分号 \";\" 。", chars, span.iLeft);
 
-            c = chars[break后不是空白的位置];
+            c = chars[continue后不是空白的位置];
 
             if (c != ';')
-                throw new 语法错误_Exception("无效的 continue 语句，无效的字符 \"" + c + "\" 。", chars, break后不是空白的位置);
+                throw new 语法错误_Exception("无效的 continue 语句，无效的字符 \"" + c + "\" 。", chars, continue后不是空白的位置);
 
-            语句结束位置 = break后不是空白的位置;
+            语句结束位置 = continue后不是空白的位置;
 
             return new continue_语句();
         }

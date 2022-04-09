@@ -66,6 +66,16 @@ namespace InnerC.C_Members.表达式s
             this.初始值.还原_C_源代码(sb);
         }
 
+        public override void Set_作用域(作用域 作用域)
+        {
+            base.Set_作用域(作用域);
+
+            this.类型.Set_作用域(作用域);
+            if (this.初始值 != null)
+                this.初始值.Set_作用域(作用域);
+            //this.作用域.Add_变量定义(this, this.chars);
+        }
+
         public override void 类型和语法检查(List<语法错误> list语法错误)
         {
 
@@ -100,11 +110,11 @@ namespace InnerC.C_Members.表达式s
 
         }
 
-        public override void 类型和语法检查(List<语法错误> list语法错误)
-        {
-            //  检查 this.类型 是否有效
-            //  检查 this.初始值 是否是 常量 或 常量表达式
-        }
+        //public override void 类型和语法检查(List<语法错误> list语法错误)
+        //{
+        //    //  检查 this.类型 是否有效
+        //    //  检查 this.初始值 是否是 常量 或 常量表达式
+        //}
     }
 
     class 字段声明 : 变量声明和初始化
@@ -115,11 +125,11 @@ namespace InnerC.C_Members.表达式s
 
         }
 
-        public override void 类型和语法检查(List<语法错误> list语法错误)
-        {
-            //  检查 this.类型 是否有效
-            //  检查 this.初始值 是否是 常量 或 常量表达式
-        }
+        //public override void 类型和语法检查(List<语法错误> list语法错误)
+        //{
+        //    //  检查 this.类型 是否有效
+        //    //  检查 this.初始值 是否是 常量 或 常量表达式
+        //}
     }
 
     class 形参 : 变量声明和初始化
@@ -130,9 +140,9 @@ namespace InnerC.C_Members.表达式s
 
         }
 
-        public override void 类型和语法检查(List<语法错误> list语法错误)
-        {
-            //  检查 this.类型 是否有效
-        }
+        //public override void 类型和语法检查(List<语法错误> list语法错误)
+        //{
+        //    //  检查 this.类型 是否有效
+        //}
     }
 }

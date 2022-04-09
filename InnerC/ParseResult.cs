@@ -13,11 +13,17 @@ namespace InnerC
 {
     class ParseResult
     {
-        public Dictionary<string, 全局变量> dic全局变量 = new Dictionary<string, 全局变量>();
+        public 作用域 全局变量 = new 作用域();
+        //public Dictionary<string, 全局变量> dic全局变量 = new Dictionary<string, 全局变量>();
 
         public Dictionary<string, 结构体> dic结构体 = new Dictionary<string, 结构体>();
 
         public Dictionary<string, 函数> dic函数 = new Dictionary<string, 函数>();
+
+        public ParseResult()
+        {
+            this.全局变量.Set_ParseResult(this);
+        }
 
         //public void 命名检查()
         //{
@@ -34,7 +40,8 @@ namespace InnerC
 
         public void 类型和语法检查(List<语法错误> list语法错误)
         {
-            foreach (全局变量 全局变量 in this.dic全局变量.Values)
+            //foreach (全局变量 全局变量 in this.dic全局变量.Values)
+            foreach (变量声明和初始化 全局变量 in this.全局变量.dic变量声明.Values)
             {
                 全局变量.类型和语法检查(list语法错误); ;
             }
@@ -52,7 +59,8 @@ namespace InnerC
 
         public void 生成目标代码()
         {
-            foreach (全局变量 全局变量 in this.dic全局变量.Values)
+            //foreach (全局变量 全局变量 in this.dic全局变量.Values)
+            foreach (变量声明和初始化 全局变量 in this.全局变量.dic变量声明.Values)
             {
                 全局变量.生成目标代码(); ;
             }
@@ -73,7 +81,8 @@ namespace InnerC
             StringBuilder sb = new StringBuilder();
 
 
-            foreach (全局变量 全局变量 in this.dic全局变量.Values)
+            //foreach (全局变量 全局变量 in this.dic全局变量.Values)
+            foreach (变量声明和初始化 全局变量 in this.全局变量.dic变量声明.Values)
             {
                 全局变量.还原_C_源代码(sb);
 

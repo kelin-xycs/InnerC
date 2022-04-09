@@ -338,3 +338,7 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/InnerC/obj
+/InnerC/bin
+/InnerC_Demo/bin
+/InnerC_Demo/obj

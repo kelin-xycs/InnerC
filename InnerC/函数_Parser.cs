@@ -238,11 +238,12 @@ namespace InnerC
                 span形参 = list[i];
 
                 形参 形参 = Parse_形参(chars, span形参);
-                
-                if (形参列表.dic变量声明.ContainsKey(形参.name))
-                    throw new 语法错误_Exception("参数名 \"" + 形参.name + "\" 重复 。", chars, 形参.变量名位置);
 
-                形参列表.dic变量声明.Add(形参.name, 形参);
+                形参列表.Add_变量定义(形参, chars);
+                //if (形参列表.dic变量声明.ContainsKey(形参.name))
+                //    throw new 语法错误_Exception("参数名 \"" + 形参.name + "\" 重复 。", chars, 形参.变量名位置);
+
+                //形参列表.dic变量声明.Add(形参.name, 形参);
             }
 
             return 形参列表;

@@ -46,8 +46,10 @@
     <Compile Include="C_Members\作用域.cs" />
     <Compile Include="C_Members\表达式.cs" />
     <Compile Include="C_Members\表达式s\Cast.cs" />
+    <Compile Include="C_Members\表达式s\一元表达式.cs" />
     <Compile Include="C_Members\表达式s\不等于.cs" />
     <Compile Include="C_Members\表达式s\乘.cs" />
+    <Compile Include="C_Members\表达式s\二元表达式.cs" />
     <Compile Include="C_Members\表达式s\减.cs" />
     <Compile Include="C_Members\表达式s\加.cs" />
     <Compile Include="C_Members\表达式s\变量.cs" />

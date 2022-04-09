@@ -27,5 +27,10 @@ namespace InnerC.C_Members.语句s
 
             sb.Append(";\r\n");
         }
+
+        public override void 类型和语法检查(List<语法错误> list语法错误)
+        {
+            this.表达式.类型和语法检查(list语法错误);
+        }
     }
 }

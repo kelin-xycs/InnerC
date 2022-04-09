@@ -31,14 +31,19 @@ namespace InnerC.C_Members
             this.函数体 = 函数体;
             this.函数名_iLeft = 函数名_iLeft;
 
-            函数体.Set_父作用域(形参列表);
+            函数体.Set_作用域(形参列表);
             形参列表.Set_所在函数(this);
         }
 
-        public void Set_全局成员(ParseResult r)
+        public void Set_作用域(作用域 全局变量)
         {
-            this.形参列表.Set_全局成员(r);
+            this.形参列表.Set_作用域(全局变量);
+            this.返回类型.Set_作用域(全局变量);
         }
+        //public void Set_全局成员(ParseResult r)
+        //{
+        //    this.形参列表.Set_全局成员(r);
+        //}
 
         public void 还原_C_源代码(StringBuilder sb)
         {

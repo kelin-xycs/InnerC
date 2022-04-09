@@ -9,7 +9,7 @@ namespace InnerC.C_Members
     {
         protected 作用域 作用域;
 
-        protected char[] chars;
+        public char[] chars;
         public int iLeft;
 
         protected 表达式(char[] chars, int iLeft)
@@ -30,9 +30,7 @@ namespace InnerC.C_Members
             this.作用域 = 作用域;
         }
 
-        public virtual void 类型和语法检查(List<语法错误> list语法错误)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void 类型和语法检查(List<语法错误> list语法错误);
+        
     }
 }

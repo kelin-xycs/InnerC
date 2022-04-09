@@ -77,7 +77,8 @@ namespace InnerC
                 if (r.dic结构体.ContainsKey(结构体.name))
                     throw new 语法错误_Exception("结构体名 \"" + 结构体.name + "\" 重复 。", chars, 结构体.结构体名_iLeft);
 
-                结构体.Set_全局成员(r);
+                //结构体.Set_全局成员(r);
+                结构体.Set_作用域(r.全局变量);
 
                 r.dic结构体.Add(结构体.name, 结构体);
 
@@ -90,7 +91,8 @@ namespace InnerC
             if (r.dic函数.ContainsKey(函数.name))
                 throw new 语法错误_Exception("函数名 \"" + 函数.name + "\" 重复 。", chars, 函数.函数名_iLeft);
 
-            函数.Set_全局成员(r);
+            //函数.Set_全局成员(r);
+            函数.Set_作用域(r.全局变量);
 
             r.dic函数.Add(函数.name, 函数);
             
@@ -199,12 +201,15 @@ namespace InnerC
 
                 if (变量声明 == null)
                     throw new 语法错误_Exception("无效的表达式 。", chars, span.iLeft);
-            
-                if (r.dic全局变量.ContainsKey(变量声明.name))
-                    throw new 语法错误_Exception("已定义了名为 \"" + 变量声明.name + "\" 的 全局变量 。", chars, 变量声明.变量名位置);
 
-                r.dic全局变量.Add(变量声明.name, 变量声明.To_全局变量());
-                
+                r.全局变量.Add_变量定义(变量声明, chars);
+                //if (r.dic全局变量.ContainsKey(变量声明.name))
+                //if (r.全局变量.dic变量声明.ContainsKey(变量声明.name))
+                //    throw new 语法错误_Exception("已定义了名为 \"" + 变量声明.name + "\" 的 全局变量 。", chars, 变量声明.变量名位置);
+
+                //r.全局变量.dic变量声明.Add(变量声明.name, 变量声明.To_全局变量());
+                //r.dic全局变量.Add(变量声明.name, 变量声明.To_全局变量());
+
             }
         }
         //private static 结构体块 Parse_结构体块(char[] chars, StrSpan 大括号块, StrSpan 上一个大括号块)

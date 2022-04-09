@@ -21,6 +21,23 @@ namespace InnerC.C_Members
         //private 语句 所在的_while_for_语句;
 
 
+
+        public void Set_ParseResult(ParseResult r)
+        {
+            this.r = r;
+        }
+
+        public void Add_变量定义(变量声明和初始化 变量声明, char[] chars)
+        {
+            if (this.dic变量声明.ContainsKey(变量声明.name))
+                throw new 语法错误_Exception("在当前作用域内已定义了名为 \"" + 变量声明.name + "\" 的变量 。", chars, 变量声明.变量名位置);
+            //throw new 语法错误_Exception("参数名 \"" + 变量声明.name + "\" 重复 。", chars, 变量声明.变量名位置);
+
+            变量声明.Set_作用域(this);
+
+            this.dic变量声明.Add(变量声明.name, 变量声明);
+        }
+
         public 变量声明和初始化 Get_变量声明_查找_当前作用域_上级作用域_全局变量(string name)
         {
             变量声明和初始化 变量声明;
@@ -37,7 +54,8 @@ namespace InnerC.C_Members
 
             if (this.r != null)
             {
-                if (this.r.dic全局变量.TryGetValue(name, out 全局变量 全局变量))
+                //if (this.r.dic全局变量.TryGetValue(name, out 全局变量 全局变量))
+                if (this.r.全局变量.dic变量声明.TryGetValue(name, out 变量声明和初始化 全局变量))
                 {
                     return 全局变量;
                 }
@@ -61,15 +79,15 @@ namespace InnerC.C_Members
         //    return Get_变量声明_查找_上级作用域(name);
         //}
 
-        public void Set_父作用域(作用域 父作用域)
+        public void Set_作用域(作用域 作用域)
         {
-            this.父作用域 = 父作用域;
+            this.父作用域 = 作用域;
         }
 
-        public void Set_全局成员(ParseResult r)
-        {
-            this.r = r;
-        }
+        //public void Set_全局成员(ParseResult r)
+        //{
+        //    this.r = r;
+        //}
 
         public ParseResult Get_全局成员()
         {
@@ -102,12 +120,18 @@ namespace InnerC.C_Members
             throw new NotImplementedException();
         }
 
+        //public abstract void 类型和语法检查(List<语法错误> list语法错误);
+
         public virtual void 类型和语法检查(List<语法错误> list语法错误)
         {
-            foreach(变量声明和初始化 变量声明 in this.dic变量声明.Values)
-            {
-                变量声明.类型和语法检查(list语法错误);
-            }
+            //throw new NotImplementedException();
         }
+        //public virtual void 类型和语法检查(List<语法错误> list语法错误)
+        //{
+        //    foreach(变量声明和初始化 变量声明 in this.dic变量声明.Values)
+        //    {
+        //        变量声明.类型和语法检查(list语法错误);
+        //    }
+        //}
     }
 }
