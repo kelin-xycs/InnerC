@@ -41,10 +41,12 @@ namespace InnerC
         public void 类型和语法检查(List<语法错误> list语法错误)
         {
             //foreach (全局变量 全局变量 in this.dic全局变量.Values)
-            foreach (变量声明和初始化 全局变量 in this.全局变量.dic变量声明.Values)
-            {
-                全局变量.类型和语法检查(list语法错误); ;
-            }
+            //foreach (变量声明和初始化 全局变量 in this.全局变量.dic变量声明.Values)
+            //{
+            //    全局变量.类型和语法检查(list语法错误); ;
+            //}
+
+            this.全局变量.类型和语法检查(list语法错误);
 
             foreach (结构体 结构体 in this.dic结构体.Values)
             {

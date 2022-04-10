@@ -52,14 +52,14 @@ namespace InnerC.C_Members
                 return this.父作用域.Get_变量声明_查找_当前作用域_上级作用域_全局变量(name);
             }
 
-            if (this.r != null)
-            {
-                //if (this.r.dic全局变量.TryGetValue(name, out 全局变量 全局变量))
-                if (this.r.全局变量.dic变量声明.TryGetValue(name, out 变量声明和初始化 全局变量))
-                {
-                    return 全局变量;
-                }
-            }
+            //if (this.r != null)
+            //{
+            //    //if (this.r.dic全局变量.TryGetValue(name, out 全局变量 全局变量))
+            //    if (this.r.全局变量.dic变量声明.TryGetValue(name, out 变量声明和初始化 全局变量))
+            //    {
+            //        return 全局变量;
+            //    }
+            //}
 
             return null;
         }
@@ -122,16 +122,16 @@ namespace InnerC.C_Members
 
         //public abstract void 类型和语法检查(List<语法错误> list语法错误);
 
-        public virtual void 类型和语法检查(List<语法错误> list语法错误)
-        {
-            //throw new NotImplementedException();
-        }
         //public virtual void 类型和语法检查(List<语法错误> list语法错误)
         //{
-        //    foreach(变量声明和初始化 变量声明 in this.dic变量声明.Values)
-        //    {
-        //        变量声明.类型和语法检查(list语法错误);
-        //    }
+        //    //throw new NotImplementedException();
         //}
+        public virtual void 类型和语法检查(List<语法错误> list语法错误)
+        {
+            foreach (变量声明和初始化 变量声明 in this.dic变量声明.Values)
+            {
+                变量声明.类型和语法检查(list语法错误);
+            }
+        }
     }
 }

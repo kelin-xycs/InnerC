@@ -71,6 +71,7 @@ namespace InnerC.C_Members.表达式s
             base.Set_作用域(作用域);
 
             this.类型.Set_作用域(作用域);
+
             if (this.初始值 != null)
                 this.初始值.Set_作用域(作用域);
             //this.作用域.Add_变量定义(this, this.chars);

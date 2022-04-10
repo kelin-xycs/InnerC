@@ -122,7 +122,7 @@ Foo()
 
      Person persons [10];
 
-     persons[0].sing = & Sing;
+	 persons[0].sing = &Sing;
 
      (* persons[0].sing)(person[0]);
 
