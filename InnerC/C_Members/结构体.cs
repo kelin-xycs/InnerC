@@ -73,11 +73,12 @@ namespace InnerC.C_Members
 
         public void 类型和语法检查(List<语法错误> list语法错误)
         {
-            foreach (变量声明和初始化 字段声明 in this.字段声明.dic变量声明.Values)
-            //foreach(字段声明 字段声明 in this.字段声明.dic变量声明.Values)
-            {
-                字段声明.类型和语法检查(list语法错误);
-            }
+            this.字段声明.类型和语法检查(list语法错误);
+            //foreach (变量声明和初始化 字段声明 in this.字段声明.dic变量声明.Values)
+            ////foreach(字段声明 字段声明 in this.字段声明.dic变量声明.Values)
+            //{
+            //    字段声明.类型和语法检查(list语法错误);
+            //}
         }
 
         //public void 命名检查()
